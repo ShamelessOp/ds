@@ -1,0 +1,85 @@
+Case Study: Launching a Virtual Server using Amazon EC2
+
+1. Introduction
+
+Amazon EC2 (Elastic Compute Cloud) is a service provided by Amazon Web Services that allows users to create virtual servers in the cloud. It eliminates the need for physical hardware and provides scalable computing resources on demand.
+
+2. Objective
+
+to create, configure, and deploy a virtual server using Amazon EC2, and host a basic web application on it.
+
+3. Step 1: AWS Account Creation
+Visit the official website of Amazon Web Services.
+Click on "Create an AWS Account".
+Enter email address, password, and account name.
+Provide billing details such as debit or credit card information.
+Complete phone verification using OTP.
+Select the Basic Support Plan.
+
+Result: AWS account is successfully created.
+
+4. Step 2: Access EC2 Dashboard
+Log in to the AWS Management Console.
+Search for EC2 in the services section.
+Open the EC2 Dashboard.
+
+5. Step 3: Launch EC2 Instance
+Click on "Launch Instance".
+Provide instance details such as:
+Name of instance (for example: MyServer)
+Select Amazon Machine Image (AMI), such as Amazon Linux or Ubuntu
+Choose instance type (t2.micro for free tier)
+Create a key pair:
+Generate a new key pair
+Download the .pem file for secure access
+Configure network settings:
+Allow SSH (Port 22)
+Allow HTTP (Port 80)
+Allow HTTPS (Port 443)
+Configure storage (default 8 GB or more as required).
+Click on "Launch Instance".
+
+Result: Virtual server is created and starts running.
+
+6. Step 4: Connect to EC2 Instance
+
+Use SSH to connect to the instance using the downloaded key pair file and the public IP address of the instance.
+For Amazon Linux, the username is ec2-user, and for Ubuntu, the username is ubuntu.
+
+7. Step 5: Install Web Server
+
+After connecting to the instance, install a web server such as Apache.
+Update the system packages, install the Apache HTTP server, and start the service.
+Enable the service so that it runs automatically after reboot.
+
+8. Step 6: Deploy Website
+
+Navigate to the web server root directory.
+Create or edit the index.html file.
+Add basic HTML content such as a welcome message.
+
+9. Step 7: Access the Website
+
+Open a web browser and enter the public IP address of the EC2 instance.
+The deployed webpage will be displayed.
+
+10. Security Best Practices
+Keep the key pair secure and do not share it
+Restrict access in the security group to necessary ports only
+Regularly update the system
+Use firewalls and monitoring tools
+
+11. Cost Management
+Use free tier eligible instances such as t2.micro
+Stop the instance when not in use
+Monitor usage through AWS billing dashboard
+13. Termination of Instance
+Go to EC2 Dashboard
+Select the running instance
+Choose Instance State and click Terminate
+
+This permanently deletes the virtual server.
+
+14. Conclusion
+
+This case study demonstrates how Amazon EC2 enables organizations to quickly deploy and manage virtual servers. It provides a reliable, scalable, and cost-efficient solution for hosting applications in the cloud.

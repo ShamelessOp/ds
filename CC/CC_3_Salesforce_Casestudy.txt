@@ -1,0 +1,88 @@
+Case Study: Building a Basic Custom Application in Salesforce
+1. Introduction
+
+Salesforce is a cloud-based Customer Relationship Management (CRM) platform that allows organizations to build custom applications without extensive coding. It provides tools for managing data, automating processes, and creating user-friendly interfaces.
+
+2. Objective
+
+The objective of this case study is to design and develop a basic custom application in Salesforce for managing student records, including creation of objects, fields, and user interface components.
+
+3. Background
+
+An educational institute wants to digitize student information such as personal details, course enrollment, and performance. Instead of developing a system from scratch, the institute chooses Salesforce to quickly build a custom application.
+
+4. Step 1: Create Salesforce Account
+Visit the official website of Salesforce.
+Sign up for a free Developer Account.
+Enter required details such as name, email, and organization name.
+Verify email and log in to the Salesforce environment.
+
+Result: Salesforce Developer account is created.
+
+5. Step 2: Access Salesforce Dashboard
+Log in to Salesforce.
+Open the Setup menu using the gear icon.
+Navigate to the main dashboard where development tools are available.
+6. Step 3: Create a Custom Object
+Go to Setup.
+Search for "Object Manager".
+Click on "Create" and select "Custom Object".
+Enter details:
+Label: Student
+Object Name: Student
+Record Name: Student Name
+Save the object.
+
+Result: A custom object named Student is created.
+
+7. Step 4: Add Custom Fields
+Open the Student object.
+Go to Fields and Relationships.
+Click on "New Field".
+Create fields such as:
+Roll Number (Number)
+Course (Text)
+Email (Email)
+Date of Birth (Date)
+Save all fields.
+
+Result: Required fields are added to store student data.
+
+8. Step 5: Create a Tab for the Object
+Go to Setup.
+Search for "Tabs".
+Click on "New Custom Tab".
+Select the Student object.
+Choose a tab style and save.
+
+Result: A tab is created for easy access to the Student object.
+
+9. Step 6: Create a Custom App
+Go to App Manager.
+Click on "New App".
+Enter app name such as Student Management App.
+Add the Student tab to the app.
+Configure navigation and user access.
+Save and launch the app.
+
+Result: A custom application is created.
+
+10. Step 7: Add Records
+Open the Student tab.
+Click on "New".
+Enter student details such as name, roll number, and course.
+Save the record.
+
+Result: Student data is stored in the system.
+
+11. Step 8: Create Reports and Dashboard
+Go to Reports.
+Create a report based on the Student object.
+Apply filters and generate report.
+Create a dashboard to visualize student data.
+
+Result: Data visualization and reporting are enabled.
+
+12. Conclusion
+
+This case study demonstrates how Salesforce enables rapid development of custom applications. It provides an efficient way to manage data, automate workflows, and improve organizational productivity.
