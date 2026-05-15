@@ -1,0 +1,55 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+
+    // Mapper Function
+    public static Map<String, Integer> mapper(String[] logs) {
+
+        Map<String, Integer> map = new HashMap<>();
+
+        for (String line : logs) {
+
+            // Split line into words
+            String[] words = line.split(" ");
+
+            // First word is log level
+            String logLevel = words[0];
+
+            // Emit (logLevel, 1)
+            map.put(logLevel,
+                    map.getOrDefault(logLevel, 0) + 1);
+        }
+
+        return map;
+    }
+
+    // Reducer Function
+    public static void reducer(Map<String, Integer> result) {
+
+        System.out.println("Log Level Counts:");
+
+        for (String key : result.keySet()) {
+            System.out.println(key + " : " + result.get(key));
+        }
+    }
+
+    public static void main(String[] args) {
+
+        // Sample log data
+        String[] logs = {
+                "INFO User logged in",
+                "ERROR Database connection failed",
+                "INFO File uploaded",
+                "WARNING Disk space low",
+                "ERROR Invalid password",
+                "INFO User logged out"
+        };
+
+        // Map Phase
+        Map<String, Integer> mappedData = mapper(logs);
+
+        // Reduce Phase
+        reducer(mappedData);
+    }
+}

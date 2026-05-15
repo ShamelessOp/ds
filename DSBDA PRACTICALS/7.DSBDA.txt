@@ -1,0 +1,108 @@
+# ==============================
+# TEXT ANALYTICS COMPLETE PROGRAM
+# ==============================
+
+# Import libraries
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk import pos_tag
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# --------------------------------
+# Download NLTK resources
+# (Run once)
+# --------------------------------
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('averaged_perceptron_tagger_eng')
+
+# --------------------------------
+# Sample Document
+# --------------------------------
+document = """
+Natural Language Processing is a field of Artificial Intelligence.
+It helps computers understand human language.
+Text analytics is widely used in chatbots, translation, and sentiment analysis.
+"""
+
+# --------------------------------
+# 1. Tokenization
+# --------------------------------
+tokens = word_tokenize(document)
+
+print("\n===== TOKENS =====")
+print(tokens)
+
+# --------------------------------
+# 2. POS Tagging
+# --------------------------------
+pos_tags = pos_tag(tokens)
+
+print("\n===== POS TAGS =====")
+print(pos_tags)
+
+# --------------------------------
+# 3. Stopwords Removal
+# --------------------------------
+stop_words = set(stopwords.words('english'))
+
+filtered_words = [
+    word for word in tokens
+    if word.lower() not in stop_words
+]
+
+print("\n===== AFTER STOPWORDS REMOVAL =====")
+print(filtered_words)
+
+# --------------------------------
+# 4. Stemming
+# --------------------------------
+stemmer = PorterStemmer()
+
+stemmed_words = [
+    stemmer.stem(word)
+    for word in filtered_words
+]
+
+print("\n===== STEMMED WORDS =====")
+print(stemmed_words)
+
+# --------------------------------
+# 5. Lemmatization
+# --------------------------------
+lemmatizer = WordNetLemmatizer()
+
+lemmatized_words = [
+    lemmatizer.lemmatize(word)
+    for word in filtered_words
+]
+
+print("\n===== LEMMATIZED WORDS =====")
+print(lemmatized_words)
+
+# --------------------------------
+# 6. TF-IDF Calculation
+# --------------------------------
+documents = [
+    "Natural Language Processing is interesting",
+    "Text analytics uses NLP techniques",
+    "Machine learning helps text processing"
+]
+
+vectorizer = TfidfVectorizer()
+
+tfidf_matrix = vectorizer.fit_transform(documents)
+
+# Feature names
+print("\n===== FEATURE NAMES =====")
+print(vectorizer.get_feature_names_out())
+
+# TF-IDF Matrix
+print("\n===== TF-IDF MATRIX =====")
+print(tfidf_matrix.toarray())

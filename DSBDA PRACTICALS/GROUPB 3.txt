@@ -1,0 +1,39 @@
+public class WeatherAverage {
+
+    public static void main(String[] args) {
+
+        String data =
+                "2026-05-01,32,24,12\n" +
+                "2026-05-02,34,25,10\n" +
+                "2026-05-03,31,23,14\n" +
+                "2026-05-04,30,22,11\n" +
+                "2026-05-05,33,24,13";
+
+        String[] lines = data.split("\n");
+
+        double tempSum = 0;
+        double dewSum = 0;
+        double windSum = 0;
+
+        int count = 0;
+
+        for (String line : lines) {
+
+            String[] values = line.split(",");
+
+            double temperature = Double.parseDouble(values[1]);
+            double dewPoint = Double.parseDouble(values[2]);
+            double windSpeed = Double.parseDouble(values[3]);
+
+            tempSum += temperature;
+            dewSum += dewPoint;
+            windSum += windSpeed;
+
+            count++;
+        }
+
+        System.out.println("Average Temperature : " + (tempSum / count));
+        System.out.println("Average Dew Point   : " + (dewSum / count));
+        System.out.println("Average Wind Speed  : " + (windSum / count));
+    }
+}

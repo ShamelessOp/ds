@@ -1,0 +1,48 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+
+    // Mapper Function
+    public static Map<String, Integer> mapper(String text) {
+
+        Map<String, Integer> wordCount = new HashMap<>();
+
+        // Convert text into words
+        String[] words = text.split("\\s+");
+
+        // Emit (word,1)
+        for (String word : words) {
+
+            word = word.toLowerCase();
+
+            wordCount.put(word,
+                    wordCount.getOrDefault(word, 0) + 1);
+        }
+
+        return wordCount;
+    }
+
+    // Reducer Function
+    public static void reducer(Map<String, Integer> result) {
+
+        System.out.println("Word Count Result:\n");
+
+        for (String word : result.keySet()) {
+            System.out.println(word + " : " + result.get(word));
+        }
+    }
+
+    public static void main(String[] args) {
+
+        // Sample input data (acts like input file)
+        String inputData =
+                "hello hadoop hello java hello world";
+
+        // Map Phase
+        Map<String, Integer> mappedData = mapper(inputData);
+
+        // Reduce Phase
+        reducer(mappedData);
+    }
+}

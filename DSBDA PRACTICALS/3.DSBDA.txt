@@ -1,0 +1,51 @@
+import pandas as pd
+import numpy as np
+
+# Load dataset
+data = pd.read_csv(r"C:\Users\Satish\OneDrive\Documents\practise dataset\IRIS (1).csv")
+print(data.head())
+
+# Dataset information
+print(data.info())
+
+# Group by species
+grouped = data.groupby('species')
+
+# Summary statistics
+print("\n===== SUMMARY STATISTICS =====")
+print(grouped.describe())
+
+# Mean
+print("\n===== MEAN =====")
+print(grouped.mean())
+
+# Median
+print("\n===== MEDIAN =====")
+print(grouped.median())
+
+# Minimum
+print("\n===== MINIMUM =====")
+print(grouped.min())
+
+# Maximum
+print("\n===== MAXIMUM =====")
+print(grouped.max())
+
+# Standard deviation
+print("\n===== STANDARD DEVIATION =====")
+print(grouped.std())
+
+# Separate species
+setosa = data[data['species'] == 'setosa']
+versicolor = data[data['species'] == 'versicolor']
+virginica = data[data['species'] == 'virginica']
+
+# Statistics for each species
+print("\n===== IRIS SETOSA =====")
+print(setosa.describe())
+
+print("\n===== IRIS VERSICOLOR =====")
+print(versicolor.describe())
+
+print("\n===== IRIS VIRGINICA =====")
+print(virginica.describe())

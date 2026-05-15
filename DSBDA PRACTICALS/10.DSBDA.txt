@@ -1,0 +1,73 @@
+# Data Visualization III - Iris Dataset Analysis
+
+# Step 1: Import Required Libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_iris
+
+# Step 2: Load Iris Dataset
+iris = load_iris()
+
+# Step 3: Create DataFrame
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
+
+# Step 4: Add Species Column
+df['species'] = pd.Categorical.from_codes(
+    iris.target,
+    iris.target_names
+)
+
+# Step 5: Display First 5 Rows
+print("First 5 Rows of Dataset:\n")
+print(df.head())
+
+# Step 6: Dataset Information
+print("\nDataset Information:\n")
+print(df.info())
+
+# Step 7: Statistical Summary
+print("\nStatistical Summary:\n")
+print(df.describe())
+
+# Step 8: List Features and Their Types
+print("\nFeatures and Their Types:\n")
+
+for column in df.columns:
+    
+    if df[column].dtype == 'object' or str(df[column].dtype) == 'category':
+        print(column, " -> Nominal / Categorical")
+    
+    else:
+        print(column, " -> Numeric")
+
+# Step 9: Create Histograms
+df.hist(figsize=(10,8))
+
+plt.suptitle("Histograms of Iris Dataset Features")
+
+plt.show()
+
+# Step 10: Create Boxplots
+plt.figure(figsize=(12,8))
+
+for i, column in enumerate(df.columns[:-1], 1):
+    
+    plt.subplot(2,2,i)
+    
+    sns.boxplot(y=df[column])
+    
+    plt.title(column)
+
+plt.tight_layout()
+
+plt.show()
+
+# Step 11: Inference
+
+print("\nInference:")
+
+print("\n1. Petal length and petal width show clear grouping patterns.")
+print("2. Sepal width contains some outliers.")
+print("3. Petal features are more useful for species classification.")
+print("4. The dataset is clean and suitable for visualization and machine learning.")

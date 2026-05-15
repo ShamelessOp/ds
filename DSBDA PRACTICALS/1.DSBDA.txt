@@ -1,0 +1,54 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load dataset
+data = pd.read_csv(r"C:\Users\Satish\OneDrive\Documents\practise dataset\Titanic-Dataset.csv")
+
+# Display first 5 rows
+print("First 5 Rows")
+print(data.head())
+
+# Missing values
+print("\nMissing Values")
+print(data.isnull().sum())
+
+# Statistical summary
+print("\nStatistical Summary")
+print(data.describe())
+
+# Dataset info
+print("\nDataset Information")
+print(data.info())
+
+# Dataset dimensions
+print("\nDataset Shape")
+print(data.shape)
+
+# Data types
+print("\nData Types")
+print(data.dtypes)
+
+# Convert Survived to category
+data['Survived'] = data['Survived'].astype('category')
+
+# Convert Sex column into numeric
+data['Sex'] = data['Sex'].map({
+    'male': 0,
+    'female': 1
+})
+
+# One-hot encoding
+data = pd.get_dummies(
+    data,
+    columns=['Embarked']
+)
+
+# Final dataset
+print("\nProcessed Dataset")
+print(data.head())
+
+# Final data types
+print("\nUpdated Data Types")
+print(data.dtypes)

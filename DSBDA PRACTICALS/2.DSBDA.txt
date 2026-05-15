@@ -1,0 +1,84 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create dataset
+data = {
+    'Student_ID': [1,2,3,4,5,6,7,8,9,10],
+    
+    'Gender': ['Male','Female','Female','Male','Female',
+               'Male','Female','Male',None,'Female'],
+    
+    'Math_Score': [85,90,np.nan,76,95,200,88,79,84,91],
+    
+    'Science_Score': [78,85,89,92,np.nan,87,300,76,81,90],
+    
+    'Attendance': [85,90,88,92,95,30,87,91,np.nan,89]
+}
+
+df = pd.DataFrame(data)
+
+print("Original Dataset")
+print(df)
+
+# Missing values
+print("\nMissing Values")
+print(df.isnull().sum())
+
+# Handle missing values
+df['Math_Score'].fillna(df['Math_Score'].mean(), inplace=True)
+
+df['Science_Score'].fillna(df['Science_Score'].mean(), inplace=True)
+
+df['Attendance'].fillna(df['Attendance'].mean(), inplace=True)
+
+df['Gender'].fillna(df['Gender'].mode()[0], inplace=True)
+
+# Check again
+print("\nAfter Handling Missing Values")
+print(df.isnull().sum())
+
+# Boxplot
+sns.boxplot(df['Math_Score'])
+
+plt.title("Math Score Boxplot")
+
+plt.show()
+
+# IQR method
+Q1 = df['Math_Score'].quantile(0.25)
+Q3 = df['Math_Score'].quantile(0.75)
+
+IQR = Q3 - Q1
+
+lower_limit = Q1 - 1.5 * IQR
+upper_limit = Q3 + 1.5 * IQR
+
+# Remove outliers
+df = df[
+    (df['Math_Score'] >= lower_limit) &
+    (df['Math_Score'] <= upper_limit)
+]
+
+print("\nAfter Removing Outliers")
+print(df)
+
+# Log transformation
+df['Log_Attendance'] = np.log(df['Attendance'] + 1)
+
+print("\nTransformed Data")
+print(df[['Attendance', 'Log_Attendance']])
+
+# Histograms
+plt.figure(figsize=(10,5))
+
+plt.subplot(1,2,1)
+sns.histplot(df['Attendance'], kde=True)
+plt.title("Original Attendance")
+
+plt.subplot(1,2,2)
+sns.histplot(df['Log_Attendance'], kde=True)
+plt.title("Log Transformed Attendance")
+
+plt.show()
